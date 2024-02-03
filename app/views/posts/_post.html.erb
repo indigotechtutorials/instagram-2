@@ -1,0 +1,30 @@
+<div id="<%= dom_id post %>">
+  <p class="my-2">
+    <%= image_tag(post.image) if post.image.attached? %>
+  </p>
+
+  <p class="my-2">
+    <%= post.body %>
+  </p>
+
+  <p class="my-2 flex items-center gap-2">
+    <strong class="font-medium">Posted by </strong>
+    <%= post.user.username %>
+  </p>
+
+  <p class="my-2 flex items-center gap-2">
+    <strong class="font-medium">Posted at </strong>
+    <%= post.created_at.strftime("%-l:%M%P, %B %-d, %Y") %>
+  </p>
+
+  <% if action_name != "show" %>
+    <div class="flex items-center gap-4">
+      <%= render "like", user: current_user, post: post %>
+
+      <% if current_user == post.user %>
+        <%= link_to "Edit this post", edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% end %>
+    </div>
+  <% end %>
+  <hr class="mt-6">
+</div>

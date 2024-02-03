@@ -1,0 +1,8 @@
+<div class="w-full h-16 sticky top-0 bg-gray-700 flex justify-between items-center px-8 relative">
+  <%= link_to "Home", "/", class: "text-gray-200 text-lg" %>
+  <div class="flex items-center gap-4">
+    <% if current_user %>
+      <span class="text-xl text-gray-100"> <%= current_user.username %> </span>
+    <% end %>
+  </div>
+</div>

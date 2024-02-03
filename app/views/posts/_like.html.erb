@@ -1,0 +1,17 @@
+<div id="<%= dom_id(post, :like) %>" class="flex items-center gap-3">
+  <% if like = current_user.likes.where(post_id: post.id).last %>
+    <%= link_to post_like_path(post, like), data: { turbo_method: :delete } do %>
+      <div class="w-10 text-red-500">
+        <%= render Icons::HeartFilledComponent.new %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to post_likes_path(post), data: { turbo_method: :post } do %>
+      <div class="w-10">
+        <%= render Icons::HeartOutlineComponent.new %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <span class="text-xl"> <%= post.likes.count %> </span>
+</div>
